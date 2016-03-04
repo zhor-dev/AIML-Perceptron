@@ -1,13 +1,19 @@
 public class Perceptron {
 
-    private double []weight = new double[3];
-    private int []input = new int[3];
+    private double []weight;
+    private int []input;
     private int desiredOutput;
+    private double epsilon = 0.1;
 
-    public Perceptron(double []w, int []i, int d) {
+    public Perceptron(double []w, int []i, int d, double e) {
         this.weight = w;
         this.input = i;
         this.desiredOutput = d;
+        this.epsilon = e;
+    }
+
+    public void setWeight(double[] weight) {
+        this.weight = weight;
     }
 
     public void setInput(int []i) {
@@ -40,10 +46,11 @@ public class Perceptron {
 
     void correctWeights() {
         for (int i = 0; i < weight.length; ++i) {
-            /*W(i + 1)[k] = W(i)[k] + (desired_output - network_output) * input[k] * ABS(W(i)[k]) * epsilon
+            /*
+            * W(i + 1)[k] = W(i)[k] + (desired_output - network_output) * input[k] * ABS(W(i)[k]) * epsilon
             * epsilon1 = ABS(W(i)[k] * epsilon
             */
-            weight[i] = weight[i] + (desiredOutput - output(sum())) * input[i] * /*Math.abs(weight[i]) **/ 0.1;
+            weight[i] = weight[i] + (desiredOutput - output(sum())) * input[i] * epsilon;
         }
     }
 }
