@@ -25,7 +25,7 @@ public class PerceptronLearning {
 
     private int []desiredOutput = and();
 
-    Perceptron p = new Perceptron(w, input[0], desiredOutput[0]);
+    Perceptron p = new Perceptron(w, input[0], desiredOutput[0], 0.1);
 
     private double []resultWeight;
 
@@ -33,7 +33,6 @@ public class PerceptronLearning {
         int j = 0;
         while (!isCorrect()) {
             while (p.sign(p.sum()) != desiredOutput[j]) {
-                System.out.println("index = " + j); //Log
                 p.correctWeights();
             }
             ++j;
